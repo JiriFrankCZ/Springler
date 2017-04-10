@@ -19,7 +19,7 @@ import java.time.temporal.ChronoUnit;
 public class SophisticatedIrrigationService implements IrrigationService {
 
 	@Value("watering.duration.emergency.frequency")
-	private long emergencyFrequency;
+	private String emergencyFrequency;
 
 	@Autowired
 	private ActivityRepository activityRepository;
@@ -30,7 +30,7 @@ public class SophisticatedIrrigationService implements IrrigationService {
 		return activityRepository.findByTypeAndSeverityAndDateTimeAfter(
 				ActivityType.WATERING_REQUEST,
 				ActivitySeverity.CRITICAL,
-				LocalDateTime.now().minus(emergencyFrequency, ChronoUnit.SECONDS))
+				LocalDateTime.now().minus(Integer.valueOf(emergencyFrequency), ChronoUnit.SECONDS))
 				.size() == 0;
 	}
 
