@@ -42,8 +42,11 @@ public class DarkSkyWeatherService implements WeatherService {
 		sb.append("?");
 		sb.append(STATIC_PARAMS);
 
+		final String url = sb.toString();
 
-		ResponseEntity<DarkSkyResponse> responseEntity = restTemplate.getForEntity(URI.create(sb.toString()), DarkSkyResponse.class);
+		log.debug("Url for request has been built {}.", url);
+
+		ResponseEntity<DarkSkyResponse> responseEntity = restTemplate.getForEntity(URI.create(url), DarkSkyResponse.class);
 
 		if(responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.info("Weather info request was successful.");
