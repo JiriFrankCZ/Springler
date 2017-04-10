@@ -16,7 +16,7 @@ import java.net.URI;
 @Slf4j
 public class DarkSkyWeatherService implements WeatherService {
 
-	private static final String BASE_PATH = "https://api.darksky.net/forecast/";
+	private static final String BASE_PATH = "https://api.darksky.net/forecast";
 
 	private static final String STATIC_PARAMS = "exclude=currently,hourly,minutely,alerts,flags&lang=cs&units=si";
 
