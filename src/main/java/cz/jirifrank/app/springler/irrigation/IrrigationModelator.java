@@ -43,7 +43,7 @@ public class IrrigationModelator {
 		log.info("Model is ready for publish.");
 	}
 
-	@Scheduled(fixedDelay = 10 * 1000)
+	@Scheduled(fixedDelay = 15 * 60 * 1000)
 	public void updateForeacast(){
 		log.info("Updating model");
 		currentWeatherInfo = weatherService.getForecast(positionLatitude, positionLongitude);
@@ -51,7 +51,7 @@ public class IrrigationModelator {
 	}
 
 
-	@Scheduled(fixedDelay = 15 * 1000)
+	@Scheduled(fixedDelay = 30 * 60 * 1000)
 	public void recalculate(){
 
 	}
