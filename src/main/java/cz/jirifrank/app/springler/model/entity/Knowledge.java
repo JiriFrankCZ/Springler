@@ -1,17 +1,13 @@
 package cz.jirifrank.app.springler.model.entity;
 
 import cz.jirifrank.app.springler.model.statics.ExperiencePeriod;
-import cz.jirifrank.app.springler.model.statics.LearningAction;
 import lombok.Data;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Document(indexName = "experiences")
-public class Experience {
+public class Knowledge {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +29,4 @@ public class Experience {
 
 	@Column(name = "actual_temperature")
 	private Double actualTemperature;
-
-	@Column(name = "action")
-	private LearningAction learningAction;
-
-	@Column(name = "dateTime")
-	private LocalDateTime dateTime;
-
 }

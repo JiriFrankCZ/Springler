@@ -34,6 +34,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency>
 
 		<!-- Add JPA support -->
 		<dependency>
@@ -88,6 +92,11 @@
 			<groupId>io.craftsman</groupId>
 			<artifactId>dozer-jdk8-support</artifactId>
 			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>4.1.0</version>
 		</dependency>
 
 		<!-- Binding, Date and Time -->
