@@ -24,16 +24,16 @@ public class IrrigationController {
 	@Autowired
 	private IrrigationService irrigationService;
 
-	@Value("watering.duration.emergency")
+	@Value("${watering.duration.emergency}")
 	private String emergencyIrrigationDuration;
 
-	@Value("watering.humidity.critical")
+	@Value("${watering.humidity.critical}")
 	private String criticalHumidityThreshold;
 
-	@Value("watering.humidity.low")
+	@Value("${watering.humidity.low}")
 	private String lowHumidityThreshold;
 
-	@Value("watering.humidity.ideal")
+	@Value("${watering.humidity.ideal}")
 	private String idealHumidityThreshold;
 
 	@RequestMapping(method = RequestMethod.POST)

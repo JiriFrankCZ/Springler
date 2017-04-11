@@ -22,7 +22,7 @@ public class DarkSkyWeatherService implements WeatherService {
 
 	private static final String PRECIPE_TYPE_RAIN = "rain";
 
-	@Value("location.key")
+	@Value("${location.key}")
 	private String secretKey;
 
 	private RestTemplate restTemplate = new RestTemplate();
@@ -36,9 +36,9 @@ public class DarkSkyWeatherService implements WeatherService {
 		sb.append("/");
 		sb.append(secretKey);
 		sb.append("/");
-		sb.append(latitude);
-		sb.append(",");
 		sb.append(longitude);
+		sb.append(",");
+		sb.append(latitude);
 		sb.append("?");
 		sb.append(STATIC_PARAMS);
 

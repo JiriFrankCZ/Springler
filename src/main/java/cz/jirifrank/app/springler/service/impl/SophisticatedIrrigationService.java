@@ -18,7 +18,7 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class SophisticatedIrrigationService implements IrrigationService {
 
-	@Value("watering.duration.emergency.frequency")
+	@Value("${watering.duration.emergency.frequency}")
 	private String emergencyFrequency;
 
 	@Autowired

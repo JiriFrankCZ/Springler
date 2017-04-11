@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 @Slf4j
 public class IrrigationModelator {
 
-	@Value("location.latitude")
+	@Value("${location.latitude}")
 	private String positionLongitude;
 
-	@Value("location.longitude")
+	@Value("${location.longitude}")
 	private String positionLatitude;
 
 	@Autowired

@@ -1,7 +1,6 @@
 package cz.jirifrank.app.springler.util;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
@@ -12,10 +11,10 @@ import java.time.ZoneId;
 
 public class UnixDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
 
-	private static final ZoneId ZONE_ID = ZoneId.of("America/Los_Angeles");
+	private static final ZoneId ZONE_ID = ZoneId.of("Europe/Prague");
 
 	@Override
-	public LocalDateTime deserialize(JsonParser parser, DeserializationContext context) throws IOException, JsonProcessingException {
+	public LocalDateTime deserialize(JsonParser parser, DeserializationContext context) throws IOException {
 		String unixTimestamp = parser.getText().trim();
 
 		return Instant
