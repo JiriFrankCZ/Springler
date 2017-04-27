@@ -1,20 +1,26 @@
 package cz.jirifrank.app.springler.controller;
 
-import cz.jirifrank.app.springler.model.dto.IrrigationCommand;
-import cz.jirifrank.app.springler.model.dto.ThresholdMonitoringCommand;
-import cz.jirifrank.app.springler.model.dto.TimerCommand;
+import cz.jirifrank.app.springler.model.dto.HumidityMeasurement;
+import cz.jirifrank.app.springler.model.dto.WeatherInfo;
 import cz.jirifrank.app.springler.service.DataService;
-import cz.jirifrank.app.springler.service.IrrigationService;
+import cz.jirifrank.app.springler.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Data collection controller for storing all the incomming data
+ *
+ * @author Jiří Frank
+ */
 @RestController
-@RequestMapping("/irrigation")
 @Slf4j
 public class IrrigationController {
 
@@ -22,63 +28,30 @@ public class IrrigationController {
 	private DataService dataService;
 
 	@Autowired
-	private IrrigationService irrigationService;
+	private WeatherService weatherService;
 
-	@Value("${watering.duration.emergency}")
-	private String emergencyIrrigationDuration;
-
-	@Value("${watering.humidity.critical}")
-	private String criticalHumidityThreshold;
-
-	@Value("${watering.humidity.low}")
-	private String lowHumidityThreshold;
-
-	@Value("${watering.humidity.ideal}")
-	private String idealHumidityThreshold;
-
-	@RequestMapping(method = RequestMethod.POST)
-	public IrrigationCommand emergencyRequest(){
-		log.warn("Emergency watering request started.");
-		IrrigationCommand irrigationCommand = new IrrigationCommand();
-
-		if(irrigationService.isAllowedEmergency()){
-
-		}else{
-			irrigationCommand.setDuration(0d);
-		}
-
-		log.warn("Emergency watering request finished.");
-		return irrigationCommand;
+	@RequestMapping(value = "/humidity/{data}", method = RequestMethod.POST)
+	public void uploadData(@PathVariable("data") Double soilMoistureHumidity) {
+		log.info("New humidity data [{}].", soilMoistureHumidity);
+		dataService.persistHumidity(soilMoistureHumidity);
+		log.info("Humidity data has been saved.");
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public IrrigationCommand standardRequest(){
-		log.info("Standard watering request started.");
-		IrrigationCommand irrigationCommand = new IrrigationCommand();
+	@RequestMapping(value = "/weather/rain", method = RequestMethod.GET)
+	public Map<String, Boolean> rainCheck() {
+		log.info("Rain probability request.");
 
-		log.info("Standard watering request finished.");
-		return irrigationCommand;
+		WeatherInfo actualForecast = weatherService.getActualForecast();
+		boolean rain = actualForecast.getRainProbability() > 80;
+
+		log.info("Probability resolved : {}", rain);
+
+		return Collections.singletonMap("rain", rain);
 	}
 
-	@RequestMapping(value = "config/clock", method = RequestMethod.GET)
-	public TimerCommand clockRequest(){
-		log.info("Clock config started.");
-		TimerCommand timerCommand = new TimerCommand();
-
-
-		log.info("Clock config finished.");
-		return timerCommand;
+	@RequestMapping(value = "/humidity", method = RequestMethod.GET)
+	public List<HumidityMeasurement> list() {
+		log.info("Data list request arrived.");
+		return dataService.getLatest();
 	}
-
-	@RequestMapping(value = "config/threshold", method = RequestMethod.GET)
-	public ThresholdMonitoringCommand thresholdsReuqest(){
-		log.info("Clock config started.");
-		ThresholdMonitoringCommand thresholdMonitoringCommand = new ThresholdMonitoringCommand();
-
-		log.info("Clock config finished.");
-		return thresholdMonitoringCommand;
-	}
-
 }
-
-

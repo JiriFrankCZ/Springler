@@ -7,9 +7,11 @@ import cz.jirifrank.app.springler.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 
 @Service
@@ -25,10 +27,23 @@ public class DarkSkyWeatherService implements WeatherService {
 	@Value("${location.key}")
 	private String secretKey;
 
+	@Value("${location.latitude}")
+	private String longitude;
+
+	@Value("${location.longitude}")
+	private String latitude;
+
 	private RestTemplate restTemplate = new RestTemplate();
 
+	private WeatherInfo actualForecast;
+
+	@PostConstruct
+	public void init() {
+		updateForeacast();
+	}
+
 	@Override
-	public WeatherInfo getForecast(String latitude, String longitude) {
+	public WeatherInfo getForecast() {
 		log.info("Weather info request for {} and {} position.", latitude, longitude);
 
 		StringBuilder sb = new StringBuilder();
@@ -69,4 +84,14 @@ public class DarkSkyWeatherService implements WeatherService {
 		}
 	}
 
+	@Scheduled(fixedDelay = 15 * 60 * 1000)
+	public void updateForeacast() {
+		log.info("Updating forecast from remote webservice.");
+		actualForecast = getForecast();
+		log.info("Forecast is actual.");
+	}
+
+	public WeatherInfo getActualForecast() {
+		return actualForecast;
+	}
 }
