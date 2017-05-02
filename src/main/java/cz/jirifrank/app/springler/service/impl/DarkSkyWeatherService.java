@@ -84,7 +84,7 @@ public class DarkSkyWeatherService implements WeatherService {
 		}
 	}
 
-	@Scheduled(fixedDelay = 15 * 60 * 1000)
+	@Scheduled(fixedDelay = 60 * 60 * 1000)
 	public void updateForeacast() {
 		log.info("Updating forecast from remote webservice.");
 		actualForecast = getForecast();
