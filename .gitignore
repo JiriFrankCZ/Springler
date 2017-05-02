@@ -1,10 +1,12 @@
-
+.piolibdeps
 .clang_complete
 .gcc-flags.json
 .idea/inspectionProfiles/
 .idea/vcs.xml
 .pioenvs/
+target/
 target/generated-sources/
 target/generated-test-sources/
-lib
-.idea
+lib/
+.idea/
+./idea/workspace.xml
