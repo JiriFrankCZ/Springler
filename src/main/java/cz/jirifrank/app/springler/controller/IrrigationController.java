@@ -24,6 +24,8 @@ import java.util.Map;
 @Slf4j
 public class IrrigationController {
 
+	private Integer wateringRequest = 0;
+
 	@Autowired
 	private DataService dataService;
 
@@ -53,5 +55,27 @@ public class IrrigationController {
 	public List<HumidityMeasurement> list() {
 		log.info("Data list request arrived.");
 		return dataService.getLatest();
+	}
+
+	@RequestMapping(value = "/watering/{duration}", method = RequestMethod.POST)
+	public void wateringRequest(@PathVariable("duration") Integer duration) {
+		log.info("Watering request for {} seconds.", duration);
+		if (wateringRequest == 0) {
+			wateringRequest = duration;
+		} else {
+			log.warn("Not processed watering action. Some watering is pending.");
+		}
+		log.info("Watering has been set.");
+	}
+
+	@RequestMapping(value = "/watering", method = RequestMethod.GET)
+	public Map<String, Integer> wateringRequestInfo() {
+		log.info("Watering request.");
+
+		int wateringRequest = this.wateringRequest;
+		this.wateringRequest = 0;
+
+		log.info("Watering duration {} returned.", wateringRequest);
+		return Collections.singletonMap("duration", wateringRequest);
 	}
 }
