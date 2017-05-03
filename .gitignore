@@ -1,3 +1,6 @@
 target
 lib
 .idea
+.idea/libraries
+data/
+src/main/java/cz/jirifrank/app/springler/model/statics/

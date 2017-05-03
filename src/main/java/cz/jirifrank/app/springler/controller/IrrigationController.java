@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -24,13 +26,23 @@ import java.util.Map;
 @Slf4j
 public class IrrigationController {
 
-	private Integer wateringRequest = 0;
+	private LocalDateTime lastWateringRequest;
+
+	private Integer wateringRequest;
 
 	@Autowired
 	private DataService dataService;
 
 	@Autowired
 	private WeatherService weatherService;
+
+	@PostConstruct
+	private void init(){
+		lastWateringRequest = LocalDateTime.now();
+		wateringRequest = 0;
+
+		log.info("Irrigation ready.");
+	}
 
 	@RequestMapping(value = "/humidity/{data}", method = RequestMethod.POST)
 	public void uploadData(@PathVariable("data") Double soilMoistureHumidity) {
@@ -60,11 +72,7 @@ public class IrrigationController {
 	@RequestMapping(value = "/watering/{duration}", method = RequestMethod.POST)
 	public void wateringRequest(@PathVariable("duration") Integer duration) {
 		log.info("Watering request for {} seconds.", duration);
-		if (wateringRequest == 0) {
-			wateringRequest = duration;
-		} else {
-			log.warn("Not processed watering action. Some watering is pending.");
-		}
+		wateringRequest += duration;
 		log.info("Watering has been set.");
 	}
 
