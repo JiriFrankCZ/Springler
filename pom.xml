@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
+		<version>1.5.4.RELEASE</version>
 	</parent>
 
 	<groupId>cz.jirifrank.app.springler</groupId>
@@ -19,6 +19,7 @@
 		<java.version>1.8</java.version>
 		<h2.version>1.4.187</h2.version>
 		<postgresql.version>9.4.1208</postgresql.version>
+		<spring.boot.admin>1.5.1</spring.boot.admin>
 	</properties>
 
 	<developers>
@@ -85,6 +86,23 @@
 			<version>4.1.0</version>
 		</dependency>
 
+		<!-- Admin -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server</artifactId>
+			<version>${spring.boot.admin}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server-ui</artifactId>
+			<version>${spring.boot.admin}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring.boot.admin}</version>
+		</dependency>
+
 		<!-- Binding, Date and Time -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
@@ -123,4 +141,15 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>

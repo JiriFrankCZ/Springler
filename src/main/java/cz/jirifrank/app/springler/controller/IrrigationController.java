@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Data collection controller for storing all the incomming data
@@ -26,9 +27,7 @@ import java.util.Map;
 @Slf4j
 public class IrrigationController {
 
-	private LocalDateTime lastWateringRequest;
-
-	private Integer wateringRequest;
+	private AtomicInteger wateringRequest;
 
 	@Autowired
 	private DataService dataService;
@@ -38,8 +37,7 @@ public class IrrigationController {
 
 	@PostConstruct
 	private void init(){
-		lastWateringRequest = LocalDateTime.now();
-		wateringRequest = 0;
+		wateringRequest = new AtomicInteger(0);
 
 		log.info("Irrigation ready.");
 	}
@@ -72,7 +70,7 @@ public class IrrigationController {
 	@RequestMapping(value = "/watering/{duration}", method = RequestMethod.POST)
 	public void wateringRequest(@PathVariable("duration") Integer duration) {
 		log.info("Watering request for {} seconds.", duration);
-		wateringRequest += duration;
+		wateringRequest.addAndGet(duration);
 		log.info("Watering has been set.");
 	}
 
@@ -80,8 +78,8 @@ public class IrrigationController {
 	public Map<String, Integer> wateringRequestInfo() {
 		log.info("Watering request.");
 
-		int wateringRequest = this.wateringRequest;
-		this.wateringRequest = 0;
+		int wateringRequest = this.wateringRequest.get();
+		this.wateringRequest.set(0);
 
 		log.info("Watering duration {} returned.", wateringRequest);
 		return Collections.singletonMap("duration", wateringRequest);

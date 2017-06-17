@@ -1,0 +1,14 @@
+cz\jirifrank\app\springler\service\impl\DarkSkyWeatherService.class
+cz\jirifrank\app\springler\util\UnixDateTimeDeserializer.class
+cz\jirifrank\app\springler\config\Application.class
+cz\jirifrank\app\springler\model\dto\HumidityMeasurement.class
+cz\jirifrank\app\springler\model\dto\weather\Data.class
+cz\jirifrank\app\springler\model\dto\weather\DarkSkyResponse.class
+cz\jirifrank\app\springler\model\dto\weather\Daily.class
+cz\jirifrank\app\springler\model\entity\Humidity.class
+cz\jirifrank\app\springler\service\impl\EmpiricDataService.class
+cz\jirifrank\app\springler\model\dto\WeatherInfo.class
+cz\jirifrank\app\springler\controller\IrrigationController.class
+cz\jirifrank\app\springler\repository\HumidityRepository.class
+cz\jirifrank\app\springler\service\WeatherService.class
+cz\jirifrank\app\springler\service\DataService.class
