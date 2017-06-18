@@ -62,6 +62,13 @@ public class IrrigationController {
 	}
 
 	@RequestMapping(value = "/humidity", method = RequestMethod.GET)
+	public HumidityMeasurement latestHumidity() {
+		log.info("Data list request arrived.");
+		return dataService.getLast();
+	}
+
+
+	@RequestMapping(value = "/humidity/latest", method = RequestMethod.GET)
 	public List<HumidityMeasurement> list() {
 		log.info("Data list request arrived.");
 		return dataService.getLatest();

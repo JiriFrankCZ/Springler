@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface HumidityRepository extends PagingAndSortingRepository<Humidity, Long> {
 	List<Humidity> findAllByDateTimeBetweenOrderByDateTimeDesc(LocalDateTime from, LocalDateTime to);
+	Humidity findFirstByOrderByDateTimeDesc();
 }

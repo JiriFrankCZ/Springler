@@ -11,4 +11,6 @@ public interface DataService {
 	void persistHumidity(Double humidity);
 
 	List<HumidityMeasurement> getLatest();
+
+	HumidityMeasurement getLast();
 }

@@ -49,5 +49,18 @@ public class EmpiricDataService implements DataService {
 				).collect(Collectors.toList());
 	}
 
+	@Override
+	public HumidityMeasurement getLast() {
+		Humidity humidity = humidityRepository.findFirstByOrderByDateTimeDesc();
+		HumidityMeasurement humidityMeasurement = new HumidityMeasurement();
+
+		if(humidity != null){
+			humidityMeasurement.setValue(humidity.getValue());
+			humidityMeasurement.setDateTime(humidity.getDateTime());
+		}
+
+		return humidityMeasurement;
+	}
+
 
 }
