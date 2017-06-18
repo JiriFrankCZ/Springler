@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT $JAVA_OPTS -jar target/Springler.jar --spring.profiles.active=prod
+web java -Dserver.port=$PORT $JAVA_OPTS -jar target/Springler.jar --spring.profiles.active=prod -Duser.timezone=Europe/Prague
