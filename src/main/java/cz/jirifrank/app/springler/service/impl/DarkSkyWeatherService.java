@@ -65,11 +65,7 @@ public class DarkSkyWeatherService implements WeatherService {
 
 		if(responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.info("Weather info request was successful.");
-			log.debug("log",responseEntity);
-			log.debug("log",responseEntity.getBody());
-			log.debug("log",responseEntity.getBody().getDaily().getData());
-			log.debug("log",responseEntity.getBody().getDaily().getData().get(0));
-			log.debug("log",responseEntity.getBody().getDaily().getData().get(0).getPrecipType());
+
 			Data data = responseEntity.getBody().getDaily().getData().get(0);
 
 			WeatherInfo weatherInfo = new WeatherInfo();
@@ -77,7 +73,7 @@ public class DarkSkyWeatherService implements WeatherService {
 			weatherInfo.setMinTemperature(data.getTemperatureMin());
 			weatherInfo.setSunrise(data.getSunriseTime());
 			weatherInfo.setSunset(data.getSunsetTime());
-			weatherInfo.setRainProbability(data.getPrecipType().equalsIgnoreCase(PRECIPE_TYPE_RAIN) ? data.getPrecipProbability() : 0);
+			weatherInfo.setRainProbability(data.getPrecipType() != null && data.getPrecipType().equalsIgnoreCase(PRECIPE_TYPE_RAIN) ? data.getPrecipProbability() : 0);
 
 			log.debug("Weather data {}.", weatherInfo);
 
