@@ -65,11 +65,11 @@ public class DarkSkyWeatherService implements WeatherService {
 
 		if(responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.info("Weather info request was successful.");
-			log.debug(responseEntity);
-			log.debug(responseEntity.getBody());
-			log.debug(responseEntity.getBody().getDaily().getData());
-			log.debug(responseEntity.getBody().getDaily().getData().get(0));
-			log.debug(responseEntity.getBody().getDaily().getData().get(0).getPrecipType());
+			log.debug("log",responseEntity);
+			log.debug("log",responseEntity.getBody());
+			log.debug("log",responseEntity.getBody().getDaily().getData());
+			log.debug("log",responseEntity.getBody().getDaily().getData().get(0));
+			log.debug("log",responseEntity.getBody().getDaily().getData().get(0).getPrecipType());
 			Data data = responseEntity.getBody().getDaily().getData().get(0);
 
 			WeatherInfo weatherInfo = new WeatherInfo();
