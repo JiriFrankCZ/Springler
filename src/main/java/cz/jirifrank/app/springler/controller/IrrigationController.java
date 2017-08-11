@@ -54,7 +54,7 @@ public class IrrigationController {
 		log.info("Rain probability request.");
 
 		WeatherInfo actualForecast = weatherService.getActualForecast();
-		boolean rain = actualForecast.getRainProbability() > 60;
+		boolean rain = actualForecast.getRainProbability() > 0.6;
 
 		log.info("Probability resolved : {}", rain);
 
