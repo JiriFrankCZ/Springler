@@ -65,9 +65,10 @@ public class DarkSkyWeatherService implements WeatherService {
 
 		if(responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.info("Weather info request was successful.");
-
+			
 			Data data = responseEntity.getBody().getDaily().getData().get(0);
-
+			log.info(data);
+			
 			WeatherInfo weatherInfo = new WeatherInfo();
 			weatherInfo.setMaxTemperature(data.getTemperatureMax());
 			weatherInfo.setMinTemperature(data.getTemperatureMin());
