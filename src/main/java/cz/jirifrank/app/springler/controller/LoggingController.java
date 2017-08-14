@@ -25,7 +25,7 @@ public class LoggingController {
     @Autowired
     private DataService dataService;
 
-    @RequestMapping(value = "/logging/{action}/{action}", method = RequestMethod.POST)
+    @RequestMapping(value = "/logging/{action}/{value}", method = RequestMethod.POST)
     public void uploadData(@PathVariable("action") Action action, @PathVariable("value") String value) {
         log.info("New logging data [{},{}].", action, value);
         dataService.persistLog(action, value);
