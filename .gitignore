@@ -3,4 +3,5 @@ lib
 .idea
 .idea/libraries
 data/
-src/main/java/cz/jirifrank/app/springler/model/statics/
+src/web/node_modules/
+src/web/package-lock.json

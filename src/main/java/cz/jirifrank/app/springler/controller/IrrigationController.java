@@ -6,6 +6,7 @@ import cz.jirifrank.app.springler.service.DataService;
 import cz.jirifrank.app.springler.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,12 @@ public class IrrigationController {
 
 	@Autowired
 	private WeatherService weatherService;
+
+	@Value("${watering.threshold.standard}")
+	private Integer wateringThresholdStandard;
+
+	@Value("${watering.threshold.emergency}")
+	private Integer wateringThresholdEmergency;
 
 	@PostConstruct
 	private void init(){
@@ -67,7 +74,6 @@ public class IrrigationController {
 		return dataService.getLast();
 	}
 
-
 	@RequestMapping(value = "/humidity/latest", method = RequestMethod.GET)
 	public List<HumidityMeasurement> list() {
 		log.info("Data list request arrived.");
@@ -91,4 +97,19 @@ public class IrrigationController {
 		log.info("Watering duration {} returned.", wateringRequest);
 		return Collections.singletonMap("duration", wateringRequest);
 	}
+
+	@RequestMapping(value = "/configration/threshold/standard/{value}", method = RequestMethod.PUT)
+	public void updateConfigurationThresholdStandard(@PathVariable("value") Integer value) {
+		log.info("Configuration update - threshold standard");
+
+		this.wateringThresholdStandard = value;
+	}
+
+	@RequestMapping(value = "/configration/threshold/emergency/{value}", method = RequestMethod.PUT)
+	public void updateConfigurationThresholdEmergency(@PathVariable("value") Integer value) {
+		log.info("Configuration update - threshold emergency");
+
+		this.wateringThresholdEmergency = value;
+	}
+
 }
