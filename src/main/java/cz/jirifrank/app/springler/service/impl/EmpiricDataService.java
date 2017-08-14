@@ -81,7 +81,7 @@ public class EmpiricDataService implements DataService {
 
     @Override
     public List<Log> getLatestLogs() {
-        Page<LogEntry> logEntryPage = logEntryRepository.findAll(new PageRequest(0, 100, new Sort(Sort.Direction.DESC, "id")));
+        Page<LogEntry> logEntryPage = logEntryRepository.findAll(new PageRequest(0, 200, new Sort(Sort.Direction.DESC, "id")));
 
         return logEntryPage
                 .getContent()
