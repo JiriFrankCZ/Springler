@@ -1,5 +1,6 @@
 package cz.jirifrank.app.springler.controller;
 
+import cz.jirifrank.app.springler.model.dto.Configuration;
 import cz.jirifrank.app.springler.model.dto.HumidityMeasurement;
 import cz.jirifrank.app.springler.model.dto.WeatherInfo;
 import cz.jirifrank.app.springler.service.DataService;
@@ -110,5 +111,14 @@ public class IrrigationController {
 		log.info("Configuration update - threshold emergency");
 
 		this.wateringThresholdEmergency = value;
+	}
+
+	@RequestMapping(value = "/configuration", method = RequestMethod.GET)
+	public Configuration getConfiguration() {
+		log.info("Configuration request");
+		Configuration configuration = new Configuration();
+		configuration.setWateringThresholdEmergency(wateringThresholdEmergency);
+		configuration.setWateringThresholdStandard(wateringThresholdStandard);
+		return configuration;
 	}
 }
