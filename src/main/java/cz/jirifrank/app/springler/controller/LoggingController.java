@@ -5,10 +5,7 @@ import cz.jirifrank.app.springler.model.statics.Action;
 import cz.jirifrank.app.springler.service.DataService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@CrossOrigin(origins = "http://localhost:9090")
 public class LoggingController {
 
     @Autowired
