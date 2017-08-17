@@ -19,4 +19,6 @@ public interface DataService {
 	HumidityMeasurement getLast();
 
 	List<Log> getLatestLogs();
+
+	List<Log> getLogs(Integer size);
 }

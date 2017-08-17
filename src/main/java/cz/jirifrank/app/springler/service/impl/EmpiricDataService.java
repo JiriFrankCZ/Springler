@@ -81,6 +81,15 @@ public class EmpiricDataService implements DataService {
 
     @Override
     public List<Log> getLatestLogs() {
+        return this.searchLogs(100);
+    }
+
+    @Override
+    public List<Log> getLogs(Integer size) {
+        return this.searchLogs(size);
+    }
+
+    private List<Log> searchLogs(Integer size){
         Page<LogEntry> logEntryPage = logEntryRepository.findAll(new PageRequest(0, 200, new Sort(Sort.Direction.DESC, "id")));
 
         return logEntryPage
@@ -95,6 +104,4 @@ public class EmpiricDataService implements DataService {
                         }
                 ).collect(Collectors.toList());
     }
-
-
 }

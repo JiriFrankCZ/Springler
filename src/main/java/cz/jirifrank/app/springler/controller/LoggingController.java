@@ -35,4 +35,10 @@ public class LoggingController {
         log.info("Latest logs requeted.");
         return dataService.getLatestLogs();
     }
+
+    @RequestMapping(value = "/logging/{size}", method = RequestMethod.GET)
+    public List<Log> getGivenSize(@PathVariable("size") Integer size){
+        log.info("Logs requeted for size {}.", size);
+        return dataService.getLogs(size);
+    }
 }
