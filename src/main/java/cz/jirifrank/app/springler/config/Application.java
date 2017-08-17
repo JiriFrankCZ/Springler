@@ -1,6 +1,6 @@
 package cz.jirifrank.app.springler.config;
 
-import de.codecentric.boot.admin.config.EnableAdminServer;
+//import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = Application.APPLICATION_PACKAGE + ".repository")
 @SpringBootApplication(scanBasePackages = Application.APPLICATION_PACKAGE)
 @EntityScan(basePackages = Application.APPLICATION_PACKAGE + ".model.entity")
-@EnableAdminServer
+//@EnableAdminServer
 public class Application {
 
 	public static final String APPLICATION_PACKAGE = "cz.jirifrank.app.springler";
