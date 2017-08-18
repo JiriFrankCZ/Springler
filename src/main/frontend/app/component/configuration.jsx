@@ -38,19 +38,19 @@ export class Configuration extends React.Component {
             <div className="panel-heading">Configuration</div>
             <div className="padding-15">
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group">
-                        <label for="wateringThresholdStandard">Watering threshold standard</label>
+                    <div className="form-group">
+                        <label htmlFor="wateringThresholdStandard">Watering threshold standard</label>
 
                         <input type="text" value={this.state.configuration.wateringThresholdStandard}
                                className="form-control" id="wateringThresholdStandard"/>
                     </div>
-                    <div class="form-group">
-                        <label for="wateringThresholdStandard">Watering threshold standard</label>
+                    <div className="form-group">
+                        <label htmlFor="wateringThresholdStandard">Watering threshold standard</label>
 
                         <input type="text" value={this.state.configuration.wateringThresholdEmergency}
                                className="form-control" id="wateringThresholdEmergency"/>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <button type="submit" className="btn btn-default">Submit</button>
                     </div>
                 </form>

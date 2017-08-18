@@ -6,6 +6,7 @@ export class HumidityChart extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {values: [], labels: []};
+		this.HumidityChart = this.HumidityChart.bind(this)
 	}
 
 	componentWillUnmount() {
