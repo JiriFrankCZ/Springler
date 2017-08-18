@@ -14,7 +14,7 @@ import java.util.List;
  * Data collection controller for storing all the incomming data
  *
  * @author Jiří Frank
- */
+ */0
 @RestController
 @Slf4j
 @CrossOrigin(origins = "http://localhost:9090")
@@ -32,13 +32,13 @@ public class LoggingController {
 
     @RequestMapping(value = "/logging/latest", method = RequestMethod.GET)
     public List<Log> getLatest(){
-        log.info("Latest logs requeted.");
+        log.info("Latest logs requested.");
         return dataService.getLatestLogs();
     }
 
     @RequestMapping(value = "/logging/{size}", method = RequestMethod.GET)
     public List<Log> getGivenSize(@PathVariable("size") Integer size){
-        log.info("Logs requeted for size {}.", size);
+        log.info("Logs requested for size {}.", size);
         return dataService.getLogs(size);
     }
 }

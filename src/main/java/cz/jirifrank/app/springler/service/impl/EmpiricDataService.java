@@ -90,7 +90,7 @@ public class EmpiricDataService implements DataService {
     }
 
     private List<Log> searchLogs(Integer size){
-        Page<LogEntry> logEntryPage = logEntryRepository.findAll(new PageRequest(0, 200, new Sort(Sort.Direction.DESC, "id")));
+        Page<LogEntry> logEntryPage = logEntryRepository.findAll(new PageRequest(0, size, new Sort(Sort.Direction.DESC, "id")));
 
         return logEntryPage
                 .getContent()

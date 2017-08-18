@@ -96,14 +96,14 @@ public class IrrigationController {
 		return Collections.singletonMap("duration", wateringRequest);
 	}
 
-	@RequestMapping(value = "/configration/threshold/standard/{value}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/configuration/threshold/standard/{value}", method = RequestMethod.PUT)
 	public void updateConfigurationThresholdStandard(@PathVariable("value") Integer value) {
 		log.info("Configuration update - threshold standard");
 
 		this.wateringThresholdStandard = value;
 	}
 
-	@RequestMapping(value = "/configration/threshold/emergency/{value}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/configuration/threshold/emergency/{value}", method = RequestMethod.PUT)
 	public void updateConfigurationThresholdEmergency(@PathVariable("value") Integer value) {
 		log.info("Configuration update - threshold emergency");
 
