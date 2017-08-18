@@ -9,7 +9,12 @@ export class Activities extends React.Component {
 	}
 
 	componentDidMount() {
+		this.interval = setInterval(this.Activities, 15000);
 		this.Activities();
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
 	}
 
 	Activities() {
