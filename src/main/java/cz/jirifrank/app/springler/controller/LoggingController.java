@@ -14,7 +14,7 @@ import java.util.List;
  * Data collection controller for storing all the incomming data
  *
  * @author Jiří Frank
- */0
+ */
 @RestController
 @Slf4j
 @CrossOrigin(origins = "http://localhost:9090")
