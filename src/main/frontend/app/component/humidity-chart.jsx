@@ -25,7 +25,7 @@ export class HumidityChart extends React.Component{
 
 				{data.map((humidity) => {
 						values.unshift(100 - (humidity.value / 10));
-						labels.unshift(moment(humidity.dateTime).format('hh:mm:ss'));
+						labels.unshift(moment(humidity.dateTime).format('HH:mm:ss'));
 					}
 				)}
 
