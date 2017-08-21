@@ -6,6 +6,7 @@ export class Configuration extends React.Component {
 		super(props);
 		this.state = {configuration: []};
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -33,16 +34,22 @@ export class Configuration extends React.Component {
 		event.preventDefault();
 	}
 
+	handleChange (event) {
+		this.setState({configuration: {[event.target.name]: event.target.value}});
+	}
+
 	render() {
 		return <div className="panel panel-default">
 			<div className="panel-heading">Configuration</div>
 			<div className="row">
 				<div className="col-md-12">
 					<h2>Watering</h2>
-					<form onSubmit={this.handleSubmit}>
+					<form onSubmit={this.handleSubmit} onChange={this.handleChange}>
 						<input type="text" value={this.state.configuration.wateringThresholdStandard}
+						       name="wateringThresholdStandard"
 						       className="form-control" placeholder="Standard treshold"/>
 						<input type="text" value={this.state.configuration.wateringThresholdEmergency}
+						       name="wateringThresholdEmergency"
 						       className="form-control" placeholder="Emergency threshold"/>
 						<input type="submit" value="Submit"/>
 					</form>
