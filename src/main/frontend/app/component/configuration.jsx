@@ -38,23 +38,28 @@ export class Configuration extends React.Component {
 		this.setState({configuration: {[event.target.name]: event.target.value}});
 	}
 
-	render() {
-		return <div className="panel panel-default">
-			<div className="panel-heading">Configuration</div>
-			<div className="row">
-				<div className="col-md-12">
-					<h2>Watering</h2>
-					<form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-						<input type="text" value={this.state.configuration.wateringThresholdStandard}
-						       name="wateringThresholdStandard"
-						       className="form-control" placeholder="Standard treshold"/>
-						<input type="text" value={this.state.configuration.wateringThresholdEmergency}
-						       name="wateringThresholdEmergency"
-						       className="form-control" placeholder="Emergency threshold"/>
-						<input type="submit" value="Submit"/>
-					</form>
-				</div>
-			</div>
-		</div>;
-	};
+    render() {
+        return <div className="panel panel-default">
+            <div className="panel-heading">Configuration</div>
+            <div className="padding-15">
+                <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+                    <div className="form-group">
+                        <label htmlFor="wateringThresholdStandard">Watering threshold standard</label>
+
+                        <input type="text" value={this.state.configuration.wateringThresholdStandard}
+                               className="form-control" name="wateringThresholdStandard" id="wateringThresholdStandard"/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="wateringThresholdStandard">Watering threshold standard</label>
+
+                        <input type="text" value={this.state.configuration.wateringThresholdEmergency}
+                               className="form-control" name="wateringThresholdEmergency" id="wateringThresholdEmergency"/>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-default">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>;
+    };
 }

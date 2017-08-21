@@ -6,6 +6,7 @@ import {HumidityChart} from "./component/humidity-chart";
 import {IndexRoute, Route, Router} from "react-router";
 import {Configuration} from "./component/configuration";
 
+
 const navbar =
 	<nav role="navigation" className="navbar navbar-custom">
 		<div className="container-fluid">

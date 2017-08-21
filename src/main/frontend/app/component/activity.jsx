@@ -40,7 +40,7 @@ export class Activity extends React.Component {
 
 		return (
 		<tr key={this.props.data.key} className={color}>
-			<td>{moment(this.props.data.dateTime).format('DD.MM.YYYY hh:mm:ss')}</td>
+			<td>{moment(this.props.data.dateTime).format('DD.MM.YYYY HH:mm:ss')}</td>
 			<td>{action}</td>
 			<td>{this.props.data.value}</td>
 		</tr>
