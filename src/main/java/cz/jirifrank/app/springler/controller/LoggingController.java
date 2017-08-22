@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@CrossOrigin(origins = "http://localhost:9090")
+@CrossOrigin
 public class LoggingController {
 
     @Autowired

@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @RestController
 @Slf4j
-@CrossOrigin(origins = "http://localhost:9090")
+@CrossOrigin
 public class IrrigationController {
 
 	private AtomicInteger wateringRequest;
