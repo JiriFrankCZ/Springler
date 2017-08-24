@@ -4,7 +4,7 @@ import cz.jirifrank.app.springler.model.statics.Action;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -23,6 +23,6 @@ public class LogEntry {
 
     @Column(name = "dateTime", columnDefinition = "timestamp with time zone not null")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dateTime;
+    private Date dateTime;
 
 }

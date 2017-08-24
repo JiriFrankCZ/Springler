@@ -16,7 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class EmpiricDataService implements DataService {
     public void persistHumidity(Double soilMoistureHumidity) {
         Humidity humidity = new Humidity();
         humidity.setValue(soilMoistureHumidity);
-        humidity.setDateTime(LocalDateTime.now());
+        humidity.setDateTime(Date.from(Instant.now()));
 
         humidityRepository.save(humidity);
     }
@@ -45,7 +46,7 @@ public class EmpiricDataService implements DataService {
         LogEntry logEntry = new LogEntry();
         logEntry.setAction(action);
         logEntry.setValue(value);
-        logEntry.setDateTime(LocalDateTime.now());
+        logEntry.setDateTime(Date.from(Instant.now()));
 
         logEntryRepository.save(logEntry);
     }
