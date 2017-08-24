@@ -21,7 +21,7 @@ public class LogEntry {
     @Column(name = "value")
     private String value;
 
-    @Column(name = "dateTime")
+    @Column(name = "dateTime", columnDefinition = "timestamp with time zone not null")
     private LocalDateTime dateTime;
 
 }

@@ -5,7 +5,7 @@ import moment from "moment";
 export class HumidityChart extends React.Component{
 	constructor(props) {
 		super(props);
-		this.state = {values: [], labels: []};
+		this.state = {values: [], labels: [], rain: false};
 		this.HumidityChart = this.HumidityChart.bind(this)
 	}
 
@@ -19,20 +19,27 @@ export class HumidityChart extends React.Component{
 	}
 
 	HumidityChart() {
-		return $.getJSON('https://springler.herokuapp.com/humidity/latest')
+		$.getJSON('https://springler.herokuapp.com/humidity/latest')
 			.then((data) => {
 				let values = [];
 				let labels = [];
 
 				{data.map((humidity) => {
 						values.unshift(100 - (humidity.value / 10));
-						labels.unshift(moment(humidity.dateTime).format('HH:mm:ss'));
+						labels.unshift(moment(humidity.dateTime).format('HH:mm'));
 					}
 				)}
 
 				this.setState({
 					values: values,
 					labels: labels
+				});
+			});
+
+		return 	$.getJSON('https://springler.herokuapp.com/weather/rain')
+			.then((data) => {
+				this.setState({
+					rain: data.rain,
 				});
 			});
 	}
@@ -53,7 +60,10 @@ export class HumidityChart extends React.Component{
 		}
 
 		return <div className="panel panel-default">
-			<div className="panel-heading">Humidity</div>
+			<div className="panel-heading">
+				Humidity
+				<span className={'text-right glyphicon pull-right ' + (this.state.rain ? 'glyphicon glyphicon-tint' : 'glyphicon-certificate')} aria-hidden="true"/>
+			</div>
 			<div style={styles}>
 				<Line ref='chart' data={data} height={100}/>
 			</div>
