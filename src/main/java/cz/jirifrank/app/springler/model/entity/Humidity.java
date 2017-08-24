@@ -18,5 +18,6 @@ public class Humidity {
 	private Double value;
 
 	@Column(name = "dateTime", columnDefinition = "timestamp with time zone not null")
+	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime dateTime;
 }
