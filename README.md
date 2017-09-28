@@ -1,2 +1,0 @@
-# Springler
-Automated irrigation system

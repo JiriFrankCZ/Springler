@@ -1,7 +1,6 @@
 target
 lib
-.idea
-.idea/libraries
 data/
 src/web/node_modules/
 src/web/package-lock.json
+/.idea/

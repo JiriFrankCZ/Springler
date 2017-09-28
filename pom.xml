@@ -6,22 +6,28 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>2.0.0.M3</version>
 	</parent>
 
-	<groupId>cz.jirifrank.app.springler</groupId>
+	<groupId>cz.jirifrank.springler</groupId>
 	<artifactId>springler</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>2.0-SNAPSHOT</version>
 	<name>Springler</name>
+	<packaging>pom</packaging>
 
+	<modules>
+		<module>api</module>
+		<module>core</module>
+		<module>web</module>
+		<module>support</module>
+	</modules>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<h2.version>1.4.187</h2.version>
-		<postgresql.version>9.4.1208</postgresql.version>
 		<frontend-plugin.version>0.0.27</frontend-plugin.version>
 		<node.version>v5.7.0</node.version>
 		<npm.version>3.7.1</npm.version>
+		<spring.admin.version>1.5.4</spring.admin.version>
 	</properties>
 
 	<developers>
@@ -31,76 +37,21 @@
 		</developer>
 	</developers>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.M2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
-		<!-- Add typical dependencies for a web application -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 
-		<!-- Add JPA support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
 
-		<!-- Add Hikari Connection Pooling support -->
-		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-		</dependency>
-
-		<!-- Add H2 database support [for running with local profile] -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${h2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
-		</dependency>
-
-		<!-- Validation -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.4.1.Final</version>
-		</dependency>
-
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Utils -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.16</version>
-		</dependency>
-		<dependency>
-			<groupId>net.java.dev.jna</groupId>
-			<artifactId>jna</artifactId>
-			<version>4.1.0</version>
-		</dependency>
-
-		<!-- Binding, Date and Time -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jsr310</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -120,48 +71,43 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>${frontend-plugin.version}</version>
-				<configuration>
-					<workingDirectory>src/main/frontend</workingDirectory>
-					<nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
-					<nodeVersion>${node.version}</nodeVersion>
-					<npmVersion>${npm.version}</npmVersion>
-					<installDirectory>target</installDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-						<phase>generate-resources</phase>
-					</execution>
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>install</arguments>
-							<installDirectory>target</installDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>webpack build</id>
-						<goals>
-							<goal>webpack</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>com.github.eirslett</groupId>-->
+				<!--<artifactId>frontend-maven-plugin</artifactId>-->
+				<!--<version>${frontend-plugin.version}</version>-->
+				<!--<configuration>-->
+					<!--<workingDirectory>src/main/frontend</workingDirectory>-->
+					<!--<nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>-->
+					<!--<nodeVersion>${node.version}</nodeVersion>-->
+					<!--<npmVersion>${npm.version}</npmVersion>-->
+					<!--<installDirectory>target</installDirectory>-->
+				<!--</configuration>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>install node and npm</id>-->
+						<!--<goals>-->
+							<!--<goal>install-node-and-npm</goal>-->
+						<!--</goals>-->
+						<!--<phase>generate-resources</phase>-->
+					<!--</execution>-->
+					<!--<execution>-->
+						<!--<id>npm install</id>-->
+						<!--<goals>-->
+							<!--<goal>npm</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<arguments>install</arguments>-->
+							<!--<installDirectory>target</installDirectory>-->
+						<!--</configuration>-->
+					<!--</execution>-->
+					<!--<execution>-->
+						<!--<id>webpack build</id>-->
+						<!--<goals>-->
+							<!--<goal>webpack</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 
@@ -169,10 +115,21 @@
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/libs-milestone</url>
+			<url>http://repo.spring.io/milestone</url>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>http://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
